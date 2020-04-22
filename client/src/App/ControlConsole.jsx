@@ -6,13 +6,13 @@ const ControlConsole = styled.main`
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.25fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    'main main capsules'
-    'main main rocket'
-    'main main id'
-    'main main landing';
+    'main capsules'
+    'main rocket'
+    'main id'
+    'main landing';
   grid-gap: 10px;
   height: 100vh;
   width: 99vw;
@@ -21,12 +21,11 @@ const ControlConsole = styled.main`
   @media (min-width: 769px) {
     grid-template-areas:
       'main main main main'
-      'main main main main'
       'capsules rocket id landing';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    min-height: 50%;
-    width: 50%;
+    grid-template-rows: 1fr 0.25fr;
+    max-height: 50vh;
+    width: 50vw;
   }
 `
 
@@ -38,7 +37,7 @@ const Viewer = styled.section`
   width: 100%;
 `
 
-const CapsulesButton = styled.div`
+const CapsulesArea = styled.div`
   grid-area: capsules;
   border-radius: 2%;
 `
@@ -48,10 +47,11 @@ const LandingButton = styled.div`
   border-radius: 2%;
 `
 
-const LandingIdInput = styled.div`
+const InputArea = styled.div`
   display: grid;
   grid-area: id;
   border-radius: 2%;
+  text-align: center;
 `
 
 const RocketHolder = styled.div`
@@ -66,10 +66,19 @@ const RocketHolder = styled.div`
 
 export const Controller = () => (
   <ControlConsole>
-    <Viewer/>
-    <CapsulesButton>Capsules</CapsulesButton>
+    <Viewer> MAIN VIEW </Viewer>
+    <CapsulesArea>Get Capsules</CapsulesArea>
     <RocketHolder><Rocket/></RocketHolder>
-    <LandingIdInput />
-    <LandingButton>Landing Pad</LandingButton>
+    <InputArea>
+      <label for='landingid'>
+        <div>Landing pad Id</div>
+        <input type='text' id='landingId' placeholder="Landing pad id" maxlength="15"></input>
+      </label>
+    </InputArea>
+    <LandingButton>
+      <button type='button' onClick={()=>{}}>
+        Get Landing Pads
+      </button>
+    </LandingButton>
   </ControlConsole>
 )
