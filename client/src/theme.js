@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: Roboto;
-    font-size: 1.1rem;
   }
   body {
     padding: 0;

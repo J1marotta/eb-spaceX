@@ -6,7 +6,7 @@ const ControlConsole = styled.main`
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 1fr 0.25fr;
+  grid-template-columns: 1fr 0.30fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'main capsules'
@@ -23,7 +23,7 @@ const ControlConsole = styled.main`
       'main main main main'
       'capsules rocket id landing';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 0.25fr;
+    grid-template-rows: 1fr 0.30fr;
     max-height: 50vh;
     width: 50vw;
   }
@@ -50,7 +50,6 @@ const LandingButton = styled.div`
 const InputArea = styled.div`
   display: grid;
   grid-area: id;
-  border-radius: 2%;
   text-align: center;
 `
 
@@ -64,15 +63,15 @@ const RocketHolder = styled.div`
   width: 100%;
 `
 
-export const Controller = () => (
+export const Controller = ({store}) => (
   <ControlConsole>
-    <Viewer> MAIN VIEW </Viewer>
+    <Viewer> {JSON.stringify(store,null,2)} </Viewer>
     <CapsulesArea>Get Capsules</CapsulesArea>
     <RocketHolder><Rocket/></RocketHolder>
     <InputArea>
-      <label for='landingid'>
+      <label htmlFor='landingid'>
         <div>Landing pad Id</div>
-        <input type='text' id='landingId' placeholder="Landing pad id" maxlength="15"></input>
+        <input type='text' id='landingId' placeholder="Landing pad id" maxLength="15"></input>
       </label>
     </InputArea>
     <LandingButton>
