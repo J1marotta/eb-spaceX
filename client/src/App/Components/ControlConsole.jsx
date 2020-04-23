@@ -1,25 +1,22 @@
 import React from 'react'
 import styled,{css} from 'styled-components'
 import { useStore } from 'react-redux'
-import { ReactComponent as Rocket } from '../assets/rocket.svg'
-import { GetCapsulesButton, LandingButton } from './Buttons'
-import { LandingInput } from './Input'
-import { ViewConsole } from './ViewConsole'
+import { GetCapsulesButton, LandingButton, ViewConsole, LandingInput, Rsvg as Rocket  } from './index'
 
-export const bordersCss = css`
+// Having some trouble Exporting this one so unfortunately have to declare it twicee
+const bordersCss = css`
   border-left: 0.5px solid black;
   border-right: 0.5px solid black;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 
-   @media (min-width: 769px ){
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 0.5px solid black;
-    border-bottom: 0.5px solid black;
-  }
+ @media (min-width: 769px ){
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+}
 `
-
 const ControlConsole = styled.main`
   display: grid;
   justify-items: center;
