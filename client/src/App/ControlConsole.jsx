@@ -1,21 +1,37 @@
 import React from 'react'
-import styled from 'styled-components'
-import { ReactComponent as Rocket } from '../assets/rocket.svg';
-import {GetCapsulesButton, LandingButton} from './Buttons'
-import {LandingInput} from './Input'
+import styled,{css} from 'styled-components'
+import { useStore } from 'react-redux'
+import { ReactComponent as Rocket } from '../assets/rocket.svg'
+import { GetCapsulesButton, LandingButton } from './Buttons'
+import { LandingInput } from './Input'
+import { ViewConsole } from './ViewConsole'
+
+export const bordersCss = css`
+  border-left: 0.5px solid black;
+  border-right: 0.5px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+   @media (min-width: 769px ){
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+  }
+`
 
 const ControlConsole = styled.main`
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 1fr 0.30fr;
+  grid-template-columns: 1fr 0.3fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     'main nav'
     'main nav'
     'main nav'
     'main nav';
-  
+
   height: 100vh;
   width: 100vw;
   margin: auto;
@@ -25,25 +41,10 @@ const ControlConsole = styled.main`
       'main main main main'
       'nav nav nav nav';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 0.30fr;
+    grid-template-rows: 1fr 0.3fr;
     max-height: 50vh;
     width: 50vw;
     grid-gap: 10px;
-  }
-`
-
-const Viewer = styled.section`
-  display: grid;
-  background-color: #e3e3e3;
-  grid-area: main;
-  height:100%;
-  width: 100%;
-  border-right: 1px solid black;
-  box-shadow:0px 8px 15px rgba(0, 0, 0, 0.1);
-  
-  @media (min-width: 769px) {
-    border: 1px solid black;
-    margin: auto;
   }
 `
 
@@ -54,10 +55,10 @@ const NavArea = styled.nav`
   justify-items: center;
   align-items: center;
   grid-area: nav;
-  grid-template-areas: 
+  grid-template-areas:
     'capsules'
     'rocket'
-    'id' 
+    'id'
     'landing';
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
@@ -66,9 +67,8 @@ const NavArea = styled.nav`
     grid-template-areas: 'capsules rocket id landing';
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    box-shadow:0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);  
   }
-
 `
 
 const CapsulesArea = styled.div`
@@ -100,20 +100,29 @@ const RocketHolder = styled.div`
   background-color: #7b21cc;
   height: 100%;
   width: 100%;
+  ${bordersCss}
 `
 
-export const Controller = ({store}) => (
-  <ControlConsole>
-    <Viewer> {JSON.stringify(store,null,2)} </Viewer>
-    <NavArea>
-      <CapsulesArea><GetCapsulesButton/></CapsulesArea>
-      <RocketHolder><Rocket/></RocketHolder>
-      <InputArea>
-        <LandingInput/>
-      </InputArea>
-      <LandingButtonArea>
-        <LandingButton/>
-      </LandingButtonArea>
-    </NavArea>
-  </ControlConsole>
-)
+export const Controller = () => {
+  const store = useStore()
+
+  return (
+    <ControlConsole>
+      <ViewConsole data={store.getState()} />
+      <NavArea>
+        <CapsulesArea>
+          <GetCapsulesButton />
+        </CapsulesArea>
+        <RocketHolder>
+          <Rocket />
+        </RocketHolder>
+        <InputArea>
+          <LandingInput />
+        </InputArea>
+        <LandingButtonArea>
+          <LandingButton />
+        </LandingButtonArea>
+      </NavArea>
+    </ControlConsole>
+  )
+}

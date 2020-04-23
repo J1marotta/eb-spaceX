@@ -5,12 +5,6 @@ import { Button as ButtonStyles} from './Buttons'
 
 const Div = styled.div`
   font-size: 16px;
-  border-bottom: none;
-
-  @media (min-width: 769px) {
-    border-right: none;
-    border-bottom: 1px solid #721bcc;
-  }
 `
 
 const getFocus = () => window.document.getElementById('landingId').focus()

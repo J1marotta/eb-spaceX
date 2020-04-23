@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    background-color: rgba(40,40,40, 0.9);
     & > #cape-canaveral {
       display: grid;
       /*  remove scroll bars */

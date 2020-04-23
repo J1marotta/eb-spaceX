@@ -2,9 +2,10 @@ import { createStore, combineReducers, compose } from 'redux';
 
 const { NODE_ENV } = process.env;
 const isDevelopment = NODE_ENV === 'development';
+import initialState from './initialState'
 
 const reducers = {
-    spaceData: (oldState = {}, action) => {
+    spaceData: (oldState = initialState, action) => {
         const { type } = action;
         switch (type) {
             default:

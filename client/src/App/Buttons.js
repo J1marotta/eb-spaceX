@@ -1,13 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import {bordersCss} from './ControlConsole'
 
 export const Button = styled.button`
-  border: 1px solid #721bcc;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
   background-color: #cc1b77;
   min-height: 100%;
   width: 100%;
   font-size: 18px;
   cursor: pointer;
+
   
   :hover {
     background-color: #fc3360;
@@ -19,15 +24,16 @@ export const Button = styled.button`
 
 
 
+
 export const GetCapsulesButton = () => (
   <Button onclick={() => {}}>
-    Get Capsules
+    Capsules
   </Button>
 )
 
 
 export const LandingButton = () => (
   <Button onclick={() => {}}>
-    Get Landing Pad
+    Landing Pad
   </Button>
 )
