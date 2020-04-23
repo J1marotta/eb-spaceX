@@ -1,0 +1,4 @@
+export const Actions = {
+  GET_CAPSULES: 'GET_CAPSULES',
+  GET_LANDING_PAD: 'GET_LANDING_PAD'
+}

@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled,{css} from 'styled-components'
-import { useStore } from 'react-redux'
+
 import { GetCapsulesButton, LandingButton, ViewConsole, LandingInput, Rsvg as Rocket  } from './index'
+import { useSelector } from 'react-redux'
 
 // Having some trouble Exporting this one so unfortunately have to declare it twicee
 const bordersCss = css`
@@ -101,23 +102,25 @@ const RocketHolder = styled.div`
 `
 
 export const Controller = () => {
-  const store = useStore()
-
+  const fullShop = useSelector(store => store)
+  const [currentView, setCurrentView] = useState(fullShop)
+  const [currentId, setCurrentId] = useState('')
+  
   return (
     <ControlConsole>
-      <ViewConsole data={store.getState()} />
+      <ViewConsole data={currentView} />
       <NavArea>
         <CapsulesArea>
-          <GetCapsulesButton />
+          <GetCapsulesButton setView={setCurrentView} />
         </CapsulesArea>
         <RocketHolder>
           <Rocket />
         </RocketHolder>
         <InputArea>
-          <LandingInput />
+          <LandingInput setCurrentId={setCurrentId}/>
         </InputArea>
         <LandingButtonArea>
-          <LandingButton />
+          <LandingButton  setView={setCurrentView} id={currentId}/>
         </LandingButtonArea>
       </NavArea>
     </ControlConsole>
