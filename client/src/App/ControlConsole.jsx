@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as Rocket } from '../assets/rocket.svg';
+import {GetCapsulesButton, LandingButton} from './Buttons'
+import {LandingInput} from './Input'
 
 const ControlConsole = styled.main`
   display: grid;
@@ -9,23 +11,24 @@ const ControlConsole = styled.main`
   grid-template-columns: 1fr 0.30fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    'main capsules'
-    'main rocket'
-    'main id'
-    'main landing';
-  grid-gap: 10px;
+    'main nav'
+    'main nav'
+    'main nav'
+    'main nav';
+  
   height: 100vh;
-  width: 99vw;
+  width: 100vw;
   margin: auto;
 
   @media (min-width: 769px) {
     grid-template-areas:
       'main main main main'
-      'capsules rocket id landing';
+      'nav nav nav nav';
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 0.30fr;
     max-height: 50vh;
     width: 50vw;
+    grid-gap: 10px;
   }
 `
 
@@ -35,30 +38,66 @@ const Viewer = styled.section`
   grid-area: main;
   height:100%;
   width: 100%;
+  border-right: 1px solid black;
+  box-shadow:0px 8px 15px rgba(0, 0, 0, 0.1);
+  
+  @media (min-width: 769px) {
+    border: 1px solid black;
+    margin: auto;
+  }
+`
+
+const NavArea = styled.nav`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
+  grid-area: nav;
+  grid-template-areas: 
+    'capsules'
+    'rocket'
+    'id' 
+    'landing';
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 769px) {
+    grid-template-areas: 'capsules rocket id landing';
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    box-shadow:0px 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
 `
 
 const CapsulesArea = styled.div`
   grid-area: capsules;
-  border-radius: 2%;
+  height: 100%;
+  width: 100%;
 `
 
-const LandingButton = styled.div`
+const LandingButtonArea = styled.div`
   grid-area: landing;
-  border-radius: 2%;
+  height: 100%;
+  width: 100%;
 `
 
 const InputArea = styled.div`
   display: grid;
   grid-area: id;
   text-align: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 `
 
 const RocketHolder = styled.div`
   display: grid;
-  padding: 10px;
   grid-area: rocket;
   align-items: center;
   justify-items: center;
+  background-color: #7b21cc;
   height: 100%;
   width: 100%;
 `
@@ -66,18 +105,15 @@ const RocketHolder = styled.div`
 export const Controller = ({store}) => (
   <ControlConsole>
     <Viewer> {JSON.stringify(store,null,2)} </Viewer>
-    <CapsulesArea>Get Capsules</CapsulesArea>
-    <RocketHolder><Rocket/></RocketHolder>
-    <InputArea>
-      <label htmlFor='landingid'>
-        <div>Landing pad Id</div>
-        <input type='text' id='landingId' placeholder="Landing pad id" maxLength="15"></input>
-      </label>
-    </InputArea>
-    <LandingButton>
-      <button type='button' onClick={()=>{}}>
-        Get Landing Pads
-      </button>
-    </LandingButton>
+    <NavArea>
+      <CapsulesArea><GetCapsulesButton/></CapsulesArea>
+      <RocketHolder><Rocket/></RocketHolder>
+      <InputArea>
+        <LandingInput/>
+      </InputArea>
+      <LandingButtonArea>
+        <LandingButton/>
+      </LandingButtonArea>
+    </NavArea>
   </ControlConsole>
 )
