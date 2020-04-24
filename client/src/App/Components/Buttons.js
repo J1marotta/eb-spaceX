@@ -48,6 +48,7 @@ export const GetCapsulesButton = ({ setView }) => {
   return (
     <Button
       onClick={() => {
+        dispatch({ type: Actions.START_LOADING, payload: Date.now() })
         dispatch({ type: Actions.GET_CAPSULES, payload: Date.now() })
         setView(capsules)
       }

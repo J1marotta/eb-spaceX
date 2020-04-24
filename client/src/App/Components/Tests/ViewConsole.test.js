@@ -3,6 +3,7 @@ import React from "react"
 import {Controller} from '../ControlConsole'
 import { render, fireEvent} from './TestWrapper'
 import initialState  from '../../../redux/initialState'
+import { useStore } from "react-redux"
 
 
 describe('Control Console', () => {
@@ -24,5 +25,14 @@ describe('Control Console', () => {
       const expected =  [[]]
       expect(JSON.parse(state.innerHTML)).toEqual(expected)
   })
+
+  // it('Loading State gets updated', () => {
+    
+  //   const { getByText, getByTestId } = render(<Controller /> )
+    
+
+    
+  //     expect(store.state.loading).toEqual(true)
+  // })
 
 })

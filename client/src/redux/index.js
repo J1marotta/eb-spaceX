@@ -16,6 +16,28 @@ const reducers = {
         return oldState
     }
   },
+  error: (state = {} , action ) => {
+    const { type } = action
+    switch (type) {
+      case 'SET_ERROR':
+        return {...state, error: true }
+      case 'CLEAR_ERROR':
+        return {...state, error: false }
+      default:
+        return state
+    }
+  },
+  loading: (state = {} , action ) => {
+    const { type } = action
+    switch (type) {
+      case 'START_LOADING':
+        return {...state, loading: true }
+      case 'STOP_LOADING':
+        return {...state, loading: false }
+      default:
+        return state
+    }
+  }
 }
 
 const slices = combineReducers({ ...reducers })
