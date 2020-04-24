@@ -15,12 +15,14 @@
     },
     "scripts": {
         "start": "react-app-rewired start",
-        "build": "react-app-rewired build"
+        "build": "babel src -d lib",
+        "test": "jest"
     },
     "dependencies": {
         "@hot-loader/react-dom": "16.13.0",
         "axios": "0.19.2",
         "customize-cra": "0.9.1",
+        "prop-types": "^15.7.2",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-redux": "7.2.0",
@@ -30,6 +32,14 @@
         "styled-components": "5.0.1"
     },
     "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.0",
+        "@babel/plugin-transform-react-jsx": "^7.9.4",
+        "@babel/preset-env": "^7.9.5",
+        "@babel/preset-react": "^7.9.4",
+        "@testing-library/react": "^10.0.3",
+        "jest": "^25.4.0",
+        "jest-cli": "^25.4.0",
         "react-app-rewire-hot-loader": "2.0.1",
         "react-app-rewired": "2.1.5",
         "react-hot-loader": "4.12.19"

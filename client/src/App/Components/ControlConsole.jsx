@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import styled,{css} from 'styled-components'
 
-import { GetCapsulesButton, LandingButton, ViewConsole, LandingInput, Rsvg as Rocket  } from './index'
+import { GetCapsulesButton, LandingButton, ViewConsole, LandingInput, Rocket  } from './index'
 import { useSelector } from 'react-redux'
 
-// Having some trouble Exporting this one so unfortunately have to declare it twicee
+// Having some trouble Exporting this one so unfortunately have to declare it twice. (webpack config would help here)
 const bordersCss = css`
   border-left: 0.5px solid black;
   border-right: 0.5px solid black;

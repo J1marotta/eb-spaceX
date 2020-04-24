@@ -1,10 +1,10 @@
-import { ReactComponent as Rsvg } from '../../assets/rocket.svg'
+import { Rocket } from './Rocket.js'
 import { GetCapsulesButton, LandingButton } from './Buttons'
 import { LandingInput } from './Input'
 import { ViewConsole } from './ViewConsole'
 
 export {
-  Rsvg,
+  Rocket,
   GetCapsulesButton,
   LandingButton,
   LandingInput,

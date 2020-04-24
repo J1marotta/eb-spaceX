@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button as ButtonStyles} from './Buttons'
+import PropTypes from 'prop-types';
 
 
 const Div = styled.div`
@@ -9,7 +10,8 @@ const Div = styled.div`
 
 const getFocus = () => window.document.getElementById('landingId').focus()
 
-export const LandingInput  = () => (
+
+export const LandingInput  = ({ setCurrentId }) => (
   <Div as={ButtonStyles} role='button' onClick={() => getFocus()} >
      <label htmlFor='landingid'>
           <div>Landing pad Id</div>
@@ -17,3 +19,7 @@ export const LandingInput  = () => (
         </label>
   </Div>
 )
+
+LandingInput.propTypes = {
+  setCurrentId: PropTypes.func.isRequired
+}

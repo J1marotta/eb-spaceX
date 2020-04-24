@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import {Actions} from '../../redux/Actions'
+import PropTypes from 'prop-types';
 
 // Had trouble export this css helper, so had to declare it twice.
 const bordersCss = css`
@@ -31,7 +32,7 @@ export const Button = styled.button`
 
   :hover {
     background-color: #fc3360;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   :active {
     background-color: #860a26;
@@ -57,6 +58,17 @@ export const GetCapsulesButton = ({ setView }) => {
   )
 }
 
+GetCapsulesButton.propTypes = {
+  setView: PropTypes.func.isRequired
+}
+
+
+
+
+// *************
+
+
+
 export const LandingButton = ({ setView, id }) => {
   const dispatch = useDispatch()
   const landingPad = useSelector((store) => store.state.map( x => x.landingPad))
@@ -73,4 +85,9 @@ export const LandingButton = ({ setView, id }) => {
       Landing Pad
     </Button>
   )
+}
+
+LandingButton.propTypes = {
+  setView: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 }

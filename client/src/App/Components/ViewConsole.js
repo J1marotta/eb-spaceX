@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 
 const Viewer = styled.section`
   display: grid;
@@ -28,10 +30,17 @@ const Pre = styled.pre`
 export const ViewConsole = ({data}) => (
   <Viewer>
     <Pre>
-      <code className="language-javascript">
+      <code data-testid='code' className="language-javascript">
         {JSON.stringify(data, null, 2)}
       </code>
     </Pre>
 
   </Viewer>
 )
+
+ViewConsole.propTypes = {
+  data: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).isRequired
+}
