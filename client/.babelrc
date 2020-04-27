@@ -1,7 +1,15 @@
 {
   "presets":[
     "@babel/env",
-    "@babel/preset-react"
+    "@babel/preset-react",
   ],
-  "plugins": ["@babel/plugin-transform-react-jsx"]
+  "plugins": [
+    ["@babel/plugin-transform-react-jsx"],
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true,
+      }
+    ]
+  ]
 }

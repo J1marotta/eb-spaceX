@@ -1,12 +1,16 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+
 import axios from 'axios'
-const baseURL = PROCESS.env.BASE_URL
+import {Actions} from './Actions'
+import store from './index'
+
+const baseURL = 'https://api.spacexdata.com/v3'
 
 
-export const getFromServer = name => {
-  const dispatch = useDispatch()
 
+export const getFromServer = (theirName) => {
+  const { dispatch } = store
+
+  const name = theirName.toLowerCase()
 
   const url = {
     capsules: `${baseURL}/capsules`,
@@ -14,21 +18,26 @@ export const getFromServer = name => {
     default: `${baseURL}/`,
   }[name || 'default']
 
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: Actions.START_LOADING, payload: Date.now() })
-        const results = await axios(url)
-        dispatch({ type: Actions.SET(name), payload: results })
-        dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
-      } catch (e) {
-        console.error(e)
-        dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
-        dispatch({ type: Actions.SET_ERROR, payload: e  })
-        throw new Error('Fetch Failed, check the API')
-      }
+
+
+  const fetchData = async () => {
+    dispatch({ type: Actions.START_LOADING, payload: Date.now() })
+    try {
+
+      const results = await axios(url)
+      const namedResults = { [name]: results.data}
+
+      dispatch({ type: Actions.SET(name), payload: namedResults })
+      dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
+
+    } catch (e) {
+      console.error(e)
+
+      dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
+      dispatch({ type: Actions.SET_ERROR, payload: e })
+
+      throw new Error('Fetch Failed, check the API')
     }
-    fetchData()
-  }, [])
+  }
+  fetchData()
 }

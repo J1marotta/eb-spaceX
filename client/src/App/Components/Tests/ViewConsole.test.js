@@ -2,17 +2,16 @@ import React from "react"
 
 import {Controller} from '../ControlConsole'
 import { render, fireEvent} from './TestWrapper'
-import initialState  from '../../../redux/initialState'
-import { useStore } from "react-redux"
-
+import initialState, {initialMeta}  from '../../../redux/initialState'
+import store from '../../../redux/index'
 
 describe('Control Console', () => {
   it('displays the initialState', () => {
       const {  getByTestId } = render(<Controller /> )
 
-      const expected = {state: initialState}
+      const expected = {state: initialState, meta: initialMeta}
       const state = getByTestId('code')
-      
+
       expect(JSON.parse(state.innerHTML)).toEqual(expected)
   })
 
@@ -22,17 +21,7 @@ describe('Control Console', () => {
       const state = getByTestId('code')
       fireEvent.click(getByText('Capsules'))
 
-      const expected =  [[]]
+      const expected = []
       expect(JSON.parse(state.innerHTML)).toEqual(expected)
   })
-
-  // it('Loading State gets updated', () => {
-    
-  //   const { getByText, getByTestId } = render(<Controller /> )
-    
-
-    
-  //     expect(store.state.loading).toEqual(true)
-  // })
-
 })

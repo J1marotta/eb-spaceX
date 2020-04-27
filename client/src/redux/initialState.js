@@ -1,11 +1,8 @@
-export const initialState = [
-  {
-    isError: false,
-    error: null,
-    loading: false,
+export const initialState = 
+  {  
     capsules: [],
     landingId: 'LZ-4',
-    landingPad: [
+    landingpad: [
       {
         "id": "LZ-4",
         "full_name": "Landing Zone 4",
@@ -23,6 +20,8 @@ export const initialState = [
         "details": "SpaceX's west coast landing pad. The pad is adjacent to SLC-4E, SpaceX's west coast launch site. The pad was under construction for about a year starting in 2016. After concerns with seal mating season, this pad was first used for the SAOCOM 1A mission in October 2018. Officially referred to as LZ-4 in FCC filings."
       }
     ]
-  }
-]
+}
+
+export const initialMeta = { loading: false, isError: false, error: null }
+
 export default initialState

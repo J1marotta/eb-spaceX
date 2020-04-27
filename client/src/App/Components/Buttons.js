@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import {Actions} from '../../redux/Actions'
 import PropTypes from 'prop-types';
+import { getFromServer } from '../../redux/FX';
 
 // Had trouble export this css helper, so had to declare it twice.
 const bordersCss = css`
@@ -42,13 +43,16 @@ export const Button = styled.button`
 
 export const GetCapsulesButton = ({ setView }) => {
   const dispatch = useDispatch()
-  const capsules = useSelector((store) => store.state.map( x => x.capsules))
+  const capsules = useSelector((store) => store.state.capsules)
+ 
 
+  //  swap the Set into a useEFfect/
 
   return (
     <Button
       onClick={() => {
         dispatch({ type: Actions.GET('CAPSULES'), payload: Date.now() })
+        getFromServer('Capsules')
         setView(capsules)
       }
     }
@@ -71,14 +75,14 @@ GetCapsulesButton.propTypes = {
 
 export const LandingButton = ({ setView, id }) => {
   const dispatch = useDispatch()
-  const landingPad = useSelector((store) => store.state.map( x => x.landingPad))
-
+  const landingpad = useSelector((store) => store.state.landingpad)
 
   return (
     <Button
       onClick={() => {
-        dispatch({ type: Actions.GET_LANDING_PAD, payload: { time: Date.now(), id } })
-        setView(landingPad)
+        dispatch({ type: Actions.GET('landingpad'), payload: { time: Date.now(), id } })
+        getFromServer('landingpad')
+        setView(landingpad)
       }
     }
     >
