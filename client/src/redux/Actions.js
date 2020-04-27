@@ -1,6 +1,6 @@
 export const Actions = {
-  GET_CAPSULES: 'GET_CAPSULES',
-  GET_LANDING_PAD: 'GET_LANDING_PAD',
+  GET: name => `GET_${name.toUpperCase()}`,
+  SET: name => `SET_${name.toUpperCase()}`,
   START_LOADING: 'START_LOADING',
   STOP_LOADING: 'STOP_LOADING',
   SET_ERROR: 'SET_ERROR',

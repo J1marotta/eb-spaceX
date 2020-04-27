@@ -1,6 +1,7 @@
 export const initialState = [
   {
-    error: false,
+    isError: false,
+    error: null,
     loading: false,
     capsules: [],
     landingId: 'LZ-4',

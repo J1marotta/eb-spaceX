@@ -3,15 +3,19 @@ import initialState from './initialState'
 
 const { NODE_ENV } = process.env
 const isDevelopment = NODE_ENV === 'development'
+import { getFromServer } from '.././redux/FX'
 
 const reducers = {
   state: (oldState = initialState, action) => {
     const { type } = action
     switch (type) {
-      case 'GET_CAPSULES':
-        return oldState
-      case 'GET_LANDING_PAD':
-        return oldState
+      case 'GET':
+        getFromServer(action.payload)
+      case 'SET':
+        return {
+          oldState,
+          ...action.payload
+        }
       default:
         return oldState
     }
@@ -20,9 +24,9 @@ const reducers = {
     const { type } = action
     switch (type) {
       case 'SET_ERROR':
-        return {...state, error: true }
+        return {...state, isError: true, error: action.payload }
       case 'CLEAR_ERROR':
-        return {...state, error: false }
+        return {...state, isError: false, error: null }
       default:
         return state
     }
