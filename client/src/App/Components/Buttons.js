@@ -39,21 +39,20 @@ export const Button = styled.button`
     background-color: #860a26;
     transform: scale(1.1);
   }
+  :disabled {
+    background-color:  #43353c;
+    cursor: not-allowed;
+  }
 `
 
-export const GetCapsulesButton = ({ setView }) => {
+export const GetCapsulesButton = ({  }) => {
   const dispatch = useDispatch()
-  const capsules = useSelector((store) => store.state.capsules)
- 
-
-  //  swap the Set into a useEFfect/
 
   return (
     <Button
       onClick={() => {
         dispatch({ type: Actions.GET('CAPSULES'), payload: Date.now() })
         getFromServer('Capsules')
-        setView(capsules)
       }
     }
     >
@@ -63,7 +62,6 @@ export const GetCapsulesButton = ({ setView }) => {
 }
 
 GetCapsulesButton.propTypes = {
-  setView: PropTypes.func.isRequired
 }
 
 
@@ -73,16 +71,19 @@ GetCapsulesButton.propTypes = {
 
 
 
-export const LandingButton = ({ setView, id }) => {
+export const LandingButton = ({ landingId }) => {
   const dispatch = useDispatch()
-  const landingpad = useSelector((store) => store.state.landingpad)
+
+  
+  const symbols = /([\%\#\&\$])/
+
 
   return (
     <Button
+      disabled={landingId.match( symbols )}
       onClick={() => {
-        dispatch({ type: Actions.GET('landingpad'), payload: { time: Date.now(), id } })
-        getFromServer('landingpad')
-        setView(landingpad)
+        dispatch({ type: Actions.GET('landingpad'), payload: { time: Date.now(), landingId } })
+        getFromServer('landingpad', landingId)
       }
     }
     >
@@ -92,6 +93,5 @@ export const LandingButton = ({ setView, id }) => {
 }
 
 LandingButton.propTypes = {
-  setView: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  landingId: PropTypes.string.isRequired,
 }

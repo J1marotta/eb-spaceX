@@ -102,25 +102,23 @@ const RocketHolder = styled.div`
 `
 
 export const Controller = () => {
-  const fullShop = useSelector(store => store)
-  const [currentView, setCurrentView] = useState(fullShop)
-  const [currentId, setCurrentId] = useState('')
+  const landingId = useSelector(store => store.state.landingId)
   
   return (
     <ControlConsole>
-      <ViewConsole data={currentView} />
+      <ViewConsole />
       <NavArea>
         <CapsulesArea>
-          <GetCapsulesButton setView={setCurrentView} />
+          <GetCapsulesButton />
         </CapsulesArea>
         <RocketHolder>
           <Rocket />
         </RocketHolder>
         <InputArea>
-          <LandingInput setCurrentId={setCurrentId}/>
+          <LandingInput landingId={landingId} />
         </InputArea>
         <LandingButtonArea>
-          <LandingButton  setView={setCurrentView} id={currentId}/>
+          <LandingButton   landingId={landingId}/>
         </LandingButtonArea>
       </NavArea>
     </ControlConsole>
