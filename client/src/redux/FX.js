@@ -10,8 +10,9 @@ export const getFromServer = (theirName, theirId) => {
   const name = theirName.toLowerCase()
   const ourId = theirId ? theirId : ''
 
-  const url =
-    name === 'capsules' ? `${baseURL}/capsules` : `${baseURL}/landpads/${ourId}`
+  const url = name === 'capsules' 
+    ? `${baseURL}/capsules` 
+    : `${baseURL}/landpads/${ourId}`
 
   const fetchData = async () => {
     dispatch({ type: Actions.START_LOADING, payload: Date.now() })
@@ -31,15 +32,15 @@ export const getFromServer = (theirName, theirId) => {
         payload: namedResults,
         time: Date.now(),
       })
-      dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
     } catch (e) {
       console.error(e)
-
-      dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
       dispatch({ type: Actions.SET_ERROR, payload: { e } })
-
       throw new Error('Fetch Failed, check the API')
     }
+    finally {
+      dispatch({ type: Actions.STOP_LOADING, payload: Date.now() })
+    }
+
   }
-  fetchData()
+  return fetchData()
 }

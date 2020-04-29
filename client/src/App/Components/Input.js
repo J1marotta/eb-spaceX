@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Button as ButtonStyles } from './Buttons'
 import store from '../../redux/index'
 import PropTypes from 'prop-types'
-import {Actions} from '../../redux/Actions'
+import { Actions } from '../../redux/Actions'
 
 const Div = styled.div`
   font-size: 16px;

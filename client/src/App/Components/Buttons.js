@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import {Actions} from '../../redux/Actions'
-import PropTypes from 'prop-types';
-import { getFromServer } from '../../redux/FX';
+import { Actions } from '../../redux/Actions'
+import PropTypes from 'prop-types'
+import { getFromServer } from '../../redux/FX'
 
 // Had trouble export this css helper, so had to declare it twice.
 const bordersCss = css`
@@ -40,50 +40,36 @@ export const Button = styled.button`
     transform: scale(1.1);
   }
   :disabled {
-    background-color:  #43353c;
+    background-color: #43353c;
     cursor: not-allowed;
   }
 `
 
-export const GetCapsulesButton = ({  }) => {
-  const dispatch = useDispatch()
-
+export const GetCapsulesButton = ({}) => {
   return (
     <Button
       onClick={() => {
         getFromServer('capsules')
-      }
-    }
+      }}
     >
       Capsules
     </Button>
   )
 }
 
-GetCapsulesButton.propTypes = {
-}
-
-
-
+GetCapsulesButton.propTypes = {}
 
 // *************
 
-
-
 export const LandingButton = ({ landingId }) => {
-  const dispatch = useDispatch()
-
-  
   const symbols = /([\%\#\&\$])/
-
 
   return (
     <Button
-      disabled={landingId.match( symbols )}
+      disabled={landingId.match(symbols)}
       onClick={() => {
-        getFromServer('landingpad', landingId )
-      }
-    }
+        getFromServer('landingpad', landingId)
+      }}
     >
       Landing Pad
     </Button>

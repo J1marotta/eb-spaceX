@@ -1,7 +1,13 @@
-import React,{useState} from 'react'
-import styled,{css} from 'styled-components'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
-import { GetCapsulesButton, LandingButton, ViewConsole, LandingInput, Rocket  } from './index'
+import {
+  GetCapsulesButton,
+  LandingButton,
+  ViewConsole,
+  LandingInput,
+  Rocket,
+} from './index'
 import { useSelector } from 'react-redux'
 
 // Having some trouble Exporting this one so unfortunately have to declare it twice. (webpack config would help here)
@@ -11,12 +17,12 @@ const bordersCss = css`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 
- @media (min-aspect-ratio: 4/3 ){
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-top: 0.5px solid black;
-  border-bottom: 0.5px solid black;
-}
+  @media (min-aspect-ratio: 4/3) {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+  }
 `
 const ControlConsole = styled.main`
   display: grid;
@@ -55,7 +61,7 @@ const NavArea = styled.nav`
     grid-template-areas: 'capsules rocket id landing';
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);  
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
 `
 
@@ -92,8 +98,8 @@ const RocketHolder = styled.div`
 `
 
 export const Controller = () => {
-  const landingId = useSelector(store => store.state.landingId)
-  
+  const landingId = useSelector((store) => store.state.landingId)
+
   return (
     <ControlConsole>
       <ViewConsole />
@@ -108,7 +114,7 @@ export const Controller = () => {
           <LandingInput landingId={landingId} />
         </InputArea>
         <LandingButtonArea>
-          <LandingButton   landingId={landingId}/>
+          <LandingButton landingId={landingId} />
         </LandingButtonArea>
       </NavArea>
     </ControlConsole>
