@@ -7,7 +7,6 @@ const WrappedWithStore = ({ children }) => (
   <Provider store={store}>
     {children}
   </Provider>
-
 ) 
 
 const customRender = (ui, options) => 

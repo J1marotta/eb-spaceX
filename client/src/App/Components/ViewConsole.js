@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 const Viewer = styled.section`
@@ -76,4 +75,3 @@ export const ViewConsole = () => {
   )
 }
 
-ViewConsole.propTypes = {}

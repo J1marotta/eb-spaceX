@@ -1,7 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { Actions } from '../../redux/Actions'
 import PropTypes from 'prop-types'
 import { getFromServer } from '../../redux/FX'
 
@@ -45,7 +43,7 @@ export const Button = styled.button`
   }
 `
 
-export const GetCapsulesButton = ({}) => {
+export const GetCapsulesButton = () => {
   return (
     <Button
       onClick={() => {
@@ -62,7 +60,7 @@ GetCapsulesButton.propTypes = {}
 // *************
 
 export const LandingButton = ({ landingId }) => {
-  const symbols = /([\%\#\&\$])/
+  const symbols = /([%#&$])/g
 
   return (
     <Button
