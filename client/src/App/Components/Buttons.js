@@ -51,8 +51,7 @@ export const GetCapsulesButton = ({  }) => {
   return (
     <Button
       onClick={() => {
-        dispatch({ type: Actions.GET('CAPSULES'), payload: Date.now() })
-        getFromServer('Capsules')
+        getFromServer('capsules')
       }
     }
     >
@@ -82,8 +81,7 @@ export const LandingButton = ({ landingId }) => {
     <Button
       disabled={landingId.match( symbols )}
       onClick={() => {
-        dispatch({ type: Actions.GET('landingpad'), payload: { time: Date.now(), landingId } })
-        getFromServer('landingpad', landingId)
+        getFromServer('landingpad', landingId )
       }
     }
     >

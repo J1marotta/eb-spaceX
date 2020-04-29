@@ -50,7 +50,7 @@ const Spin = styled.div`
   animation: ${rotate} 1.2s infinite ease-in-out;
 `
 
-const Spinner = () => <Spin></Spin>
+const Spinner = () => <Spin data-testid='spinner'></Spin>
 
 export const ViewConsole = () => {
   const fullshop = useSelector((store) => store)
