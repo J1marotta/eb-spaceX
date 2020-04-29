@@ -12,7 +12,7 @@ const bordersCss = css`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 
-  @media (min-width: 769px) {
+  @media (min-aspect-ratio: 4/3) {
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-top: 0.5px solid black;

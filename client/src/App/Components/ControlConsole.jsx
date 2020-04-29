@@ -11,7 +11,7 @@ const bordersCss = css`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 
- @media (min-width: 769px ){
+ @media (min-aspect-ratio: 4/3 ){
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-top: 0.5px solid black;
@@ -23,23 +23,14 @@ const ControlConsole = styled.main`
   justify-items: center;
   align-items: center;
   grid-template-columns: 1fr 0.3fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    'main nav'
-    'main nav'
-    'main nav'
-    'main nav';
-
+  grid-template-rows: 1fr;
   height: 100vh;
   width: 100vw;
   margin: auto;
 
-  @media (min-width: 769px) {
-    grid-template-areas:
-      'main main main main'
-      'nav nav nav nav';
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  @media (min-aspect-ratio: 4/3) {
     grid-template-rows: 1fr 0.3fr;
+    grid-template-columns: 1fr;
     max-height: 50vh;
     width: 50vw;
     grid-gap: 10px;
@@ -52,7 +43,6 @@ const NavArea = styled.nav`
   height: 100%;
   justify-items: center;
   align-items: center;
-  grid-area: nav;
   grid-template-areas:
     'capsules'
     'rocket'
@@ -61,7 +51,7 @@ const NavArea = styled.nav`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
 
-  @media (min-width: 769px) {
+  @media (min-aspect-ratio: 4/3) {
     grid-template-areas: 'capsules rocket id landing';
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;

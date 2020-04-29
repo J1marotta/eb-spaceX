@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 const Viewer = styled.section`
   display: grid;
-  grid-area: main;
   background-color: rgba(40, 40, 40, 0.8);
   height: 100%;
   width: 100%;
@@ -16,7 +15,7 @@ const Viewer = styled.section`
   overflow: auto;
   white-space: pre-wrap;
 
-  @media (min-width: 769px) {
+  @media (min-aspect-ratio: 4/3) {
     border: 1px solid black;
     margin: auto;
   }
