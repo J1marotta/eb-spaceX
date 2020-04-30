@@ -1,7 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import PropTypes from 'prop-types'
-import { getFromServer } from '../../redux/FX'
+import React from "react";
+import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
+import { getFromServer } from "../../redux/FX";
 
 // Had trouble export this css helper, so had to declare it twice.
 const bordersCss = css`
@@ -16,7 +16,7 @@ const bordersCss = css`
     border-top: 0.5px solid black;
     border-bottom: 0.5px solid black;
   }
-`
+`;
 export const Button = styled.button`
   border-left: 1px solid black;
   border-right: 1px solid black;
@@ -41,39 +41,39 @@ export const Button = styled.button`
     background-color: #43353c;
     cursor: not-allowed;
   }
-`
+`;
 
 export const GetCapsulesButton = () => {
   return (
     <Button
       onClick={() => {
-        getFromServer('capsules')
+        getFromServer("capsules");
       }}
     >
       Capsules
     </Button>
-  )
-}
+  );
+};
 
-GetCapsulesButton.propTypes = {}
+GetCapsulesButton.propTypes = {};
 
 // *************
 
 export const LandingButton = ({ landingId }) => {
-  const symbols = /([%#&$])/g
+  const symbols = /([%#&$])/g;
 
   return (
     <Button
       disabled={landingId.match(symbols)}
       onClick={() => {
-        getFromServer('landingpad', landingId)
+        getFromServer("landingpad", landingId);
       }}
     >
       Landing Pad
     </Button>
-  )
-}
+  );
+};
 
 LandingButton.propTypes = {
   landingId: PropTypes.string.isRequired,
-}
+};

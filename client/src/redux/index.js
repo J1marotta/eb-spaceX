@@ -1,51 +1,48 @@
-import { createStore, combineReducers, compose } from 'redux'
-import initialState, { initialMeta } from './initialState'
+import { createStore, combineReducers, compose } from "redux";
+import initialState, { initialMeta } from "./initialState";
 
-const { NODE_ENV } = process.env
-const isDevelopment = NODE_ENV === 'development'
+const { NODE_ENV } = process.env;
+const isDevelopment = NODE_ENV === "development";
 
 const reducers = {
   state: (oldState = initialState, action) => {
-    const type = action.type.slice(0, 3)
+    const type = action.type.slice(0, 3);
 
     switch (type) {
-      case 'SET':
+      case "SET":
         return {
           ...oldState,
           ...action.payload,
-        }
+        };
       default:
-        return oldState
+        return oldState;
     }
   },
 
-  meta: (
-    state = initialMeta,
-    action
-  ) => {
-    const { type } = action
+  meta: (state = initialMeta, action) => {
+    const { type } = action;
 
     switch (type) {
-      case 'SET_ERROR':
+      case "SET_ERROR":
         return {
           ...state,
           isError: true,
           error: action.payload,
-        }
-      case 'CLEAR_ERROR':
-        return { ...state, isError: false, error: null }
-      case 'START_LOADING':
-        return { ...state, loading: true }
-      case 'STOP_LOADING':
-        return { ...state, loading: false }
+        };
+      case "CLEAR_ERROR":
+        return { ...state, isError: false, error: null };
+      case "START_LOADING":
+        return { ...state, loading: true };
+      case "STOP_LOADING":
+        return { ...state, loading: false };
 
       default:
-        return state
+        return state;
     }
   },
-}
+};
 
-const slices = combineReducers({ ...reducers })
+const slices = combineReducers({ ...reducers });
 
 const composeEnhancers =
   isDevelopment && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -53,8 +50,8 @@ const composeEnhancers =
         trace: true,
         traceLimit: 25,
       })
-    : compose
+    : compose;
 
-const store = createStore(slices, composeEnhancers())
+const store = createStore(slices, composeEnhancers());
 
-export default store
+export default store;

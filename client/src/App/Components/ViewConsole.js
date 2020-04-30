@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { useSelector } from "react-redux";
 
 const Viewer = styled.section`
   display: grid;
@@ -18,17 +18,17 @@ const Viewer = styled.section`
     border: 1px solid black;
     margin: auto;
   }
-`
+`;
 
 const Pre = styled.pre`
   font-size: 14px;
   overflow: auto;
   color: greenyellow;
-`
+`;
 
 const Code = styled.code`
   white-space: pre-wrap;
-`
+`;
 
 const rotate = keyframes`
   0% { 
@@ -38,7 +38,7 @@ const rotate = keyframes`
   } 100% { 
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
-`
+`;
 
 const Spin = styled.div`
   width: 40px;
@@ -46,32 +46,33 @@ const Spin = styled.div`
   background-color: rgba(80, 80, 80, 0.8);
   margin: auto;
   animation: ${rotate} 1.2s infinite ease-in-out;
-`
+`;
 
-const Spinner = () => <Spin data-testid='spinner'></Spin>
+const Spinner = () => <Spin data-testid="spinner"></Spin>;
 
 export const ViewConsole = () => {
-  const fullshop = useSelector((store) => store)
-  const [currentView, setCurrentView] = useState(fullshop)
-  const error = useSelector((store) => store.meta.isError)
-  const loading = useSelector((store) => store.meta.loading)
+  const fullshop = useSelector((store) => store);
+  const [currentView, setCurrentView] = useState(fullshop);
+  const error = useSelector((store) => store.meta.isError);
+  const loading = useSelector((store) => store.meta.loading);
 
   useEffect(() => {
-    setCurrentView(fullshop)
-  }, [fullshop])
+    setCurrentView(fullshop);
+  }, [fullshop]);
 
   return (
     <Viewer>
       {!error && loading && <Spinner />}
       {!error && !loading && (
         <Pre>
-          <Code data-testid='code'>{JSON.stringify(currentView, null, 2)}</Code>
+          <Code data-testid="code">{JSON.stringify(currentView, null, 2)}</Code>
         </Pre>
       )}
       {!loading && error && (
-        <div>I'm Sorry we couldn't find that landing pad, try a different Id.</div>
+        <div>
+          I'm Sorry we couldn't find that landing pad, try a different Id.
+        </div>
       )}
     </Viewer>
-  )
-}
-
+  );
+};

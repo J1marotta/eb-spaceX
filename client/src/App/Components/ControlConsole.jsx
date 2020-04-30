@@ -1,5 +1,5 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react";
+import styled, { css } from "styled-components";
 
 import {
   GetCapsulesButton,
@@ -7,8 +7,8 @@ import {
   ViewConsole,
   LandingInput,
   Rocket,
-} from './index'
-import { useSelector } from 'react-redux'
+} from "./index";
+import { useSelector } from "react-redux";
 
 // Having some trouble Exporting this one so unfortunately have to declare it twice. (webpack config would help here)
 const bordersCss = css`
@@ -23,7 +23,7 @@ const bordersCss = css`
     border-top: 0.5px solid black;
     border-bottom: 0.5px solid black;
   }
-`
+`;
 const ControlConsole = styled.main`
   display: grid;
   justify-items: center;
@@ -41,7 +41,7 @@ const ControlConsole = styled.main`
     width: 50vw;
     grid-gap: 10px;
   }
-`
+`;
 
 const NavArea = styled.nav`
   display: grid;
@@ -50,32 +50,32 @@ const NavArea = styled.nav`
   justify-items: center;
   align-items: center;
   grid-template-areas:
-    'capsules'
-    'rocket'
-    'id'
-    'landing';
+    "capsules"
+    "rocket"
+    "id"
+    "landing";
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
 
   @media (min-aspect-ratio: 4/3) {
-    grid-template-areas: 'capsules rocket id landing';
+    grid-template-areas: "capsules rocket id landing";
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
-`
+`;
 
 const CapsulesArea = styled.div`
   grid-area: capsules;
   height: 100%;
   width: 100%;
-`
+`;
 
 const LandingButtonArea = styled.div`
   grid-area: landing;
   height: 100%;
   width: 100%;
-`
+`;
 
 const InputArea = styled.div`
   display: grid;
@@ -84,7 +84,7 @@ const InputArea = styled.div`
   height: 100%;
   width: 100%;
   align-items: center;
-`
+`;
 
 const RocketHolder = styled.div`
   display: grid;
@@ -95,10 +95,10 @@ const RocketHolder = styled.div`
   height: 100%;
   width: 100%;
   ${bordersCss}
-`
+`;
 
 export const Controller = () => {
-  const landingId = useSelector((store) => store.state.landingId)
+  const landingId = useSelector((store) => store.state.landingId);
 
   return (
     <ControlConsole>
@@ -118,5 +118,5 @@ export const Controller = () => {
         </LandingButtonArea>
       </NavArea>
     </ControlConsole>
-  )
-}
+  );
+};
