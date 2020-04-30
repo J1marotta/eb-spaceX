@@ -69,7 +69,7 @@ export const ViewConsole = () => {
         </Pre>
       )}
       {!loading && error && (
-        <div>I'm sorry there was an error please try refreshing the page.</div>
+        <div>I'm Sorry we couldn't find that landing pad, try a different Id.</div>
       )}
     </Viewer>
   )

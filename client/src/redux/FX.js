@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Actions } from './Actions'
 import store from './index'
 
-const baseURL = 'https://api.spacexdata.com/v3'
+export const baseURL = 'https://api.spacexdata.com/v3'
 
 export const getFromServer = (theirName, theirId) => {
   const { dispatch } = store
