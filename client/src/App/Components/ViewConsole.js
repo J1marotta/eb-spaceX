@@ -30,6 +30,10 @@ const Code = styled.code`
   white-space: pre-wrap;
 `;
 
+const Error = styled.div`
+  color: white;
+`
+
 const rotate = keyframes`
   0% { 
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);    
@@ -69,9 +73,9 @@ export const ViewConsole = () => {
         </Pre>
       )}
       {!loading && error && (
-        <div>
-          I'm Sorry we couldn't find that landing pad, try a different Id.
-        </div>
+        <Error>
+          Unfortunately an error occured. Try a different landing Id, or you can refresh the page.
+        </Error>
       )}
     </Viewer>
   );
