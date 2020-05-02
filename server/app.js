@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const baseURL = 'https://api.spacexdata.com/v3'
 
 app.get('/capsules', async (req, res) => {
-  axios.get(`${baseURL}/capsules`).then((r) => res.send(r.data))
+  axios.get(`${baseURL}/capsules?sort=original_launch`).then((r) => res.send(r.data))
 })
 
 app.get('/landpads/', async (req, res) => {
