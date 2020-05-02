@@ -22,27 +22,34 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const baseURL = 'https://api.spacexdata.com/v3'
 
 app.get('/capsules', async (req, res) => {
-  axios.get(`${baseURL}/capsules`).then((r) => res.send([r.data]))
+  axios.get(`${baseURL}/capsules`).then((r) => res.send(r.data))
 })
 
 app.get('/landpads/', async (req, res) => {
-  axios.get(`${baseURL}/landpads`).then((r) => res.send([r.data]))
+  axios.get(`${baseURL}/landpads`).then((r) => res.send(r.data))
 })
 
 app.get('/landpads/:id', async (req, res) => {
   const ourId = req.params.id
   var sql = mysql.format(`SELECT * from spaceData WHERE id = ?`, [ourId])
 
-  const dbData = await dbPool
-    .query(sql)
-    .then((data) =>
-      data.map(({ id, spaceItem }) => ({
+  const dbData = await dbPool.query(sql).then((data) =>
+    data
+      .map(({ id, spaceItem }) => ({
         id,
         spaceItem: JSON.parse(spaceItem),
       }))
-    )
+      .map(({ id, spaceItem: { full_name, status, location } }) => ({
+        id,
+        full_name,
+        status,
+        location,
+      }))
+  )
 
-  if (!dbData.length) {
+  if (dbData.length) {
+    return res.send({ data: dbData[0] })
+  } else {
     axios
       .get(`${baseURL}/landpads/${ourId}`, { validateStatus: () => true })
       .then(async (r) => {
@@ -62,9 +69,6 @@ app.get('/landpads/:id', async (req, res) => {
         console.error(err)
         return res.status(500)
       })
-  } else {
-    // send it to front end from our db
-    return res.send({ data: dbData[0] })
   }
 })
 
